@@ -295,11 +295,12 @@ static NSInteger const kCreateBatchSize = 100;
 	NSDictionary *mapping = mappingForClassName[[self className]];
 	if (!mapping) {
 		SEL selector = NSSelectorFromString(@"JSONInboundMappingDictionary");
+		mapping = [self mc_defaultInboundMapping];
+		
 		if ([self respondsToSelector:selector]) {
-			mapping = MCValueFromInvocation(self, selector);
-		}
-		else {
-			mapping = [self mc_defaultInboundMapping];
+			NSMutableDictionary * temp = [mapping mutableCopy];
+            [temp addEntriesFromDictionary:MCValueFromInvocation(self, selector)];;
+            mapping = [temp copy];
 		}
 		mappingForClassName[[self className]] = mapping;
 	}
