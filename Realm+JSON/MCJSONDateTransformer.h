@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString* const MCJSONDateTimeTransformerName;
-extern NSString* const MCJSONDateTimeMillisecondTransformerName;
-extern NSString* const MCJSONDateOnlyTransformerName;
+extern NSString * const MCJSONDateTimeTransformerName;
+extern NSString * const MCJSONDateTimeMillisecondTransformerName;
+extern NSString * const MCJSONDateOnlyTransformerName;
 
-typedef NS_ENUM(NSInteger, MCJSONDateTransformerStyle) {
+typedef NS_ENUM (NSInteger, MCJSONDateTransformerStyle)
+{
     MCJSONDateTransformerStyleDateTime = 0,
     MCJSONDateTransformerStyleDateTimeMillisecond,
     MCJSONDateTransformerStyleDateOnly
@@ -20,7 +21,9 @@ typedef NS_ENUM(NSInteger, MCJSONDateTransformerStyle) {
 
 @interface MCJSONDateTransformer : NSValueTransformer
 
-+ (instancetype)valueTransformerWithDateStyle:(MCJSONDateTransformerStyle)style;
-- (instancetype)initWithDateStyle:(MCJSONDateTransformerStyle)style;
++ (instancetype) valueTransformerWithDateStyle:(MCJSONDateTransformerStyle)style;
+- (instancetype) initWithDateStyle:(MCJSONDateTransformerStyle)style;
 
++ (void) setTransformer:(MCJSONDateTransformer * )transformer forDateStyle:(NSString *)style;
+- (instancetype) initWithDateFormat:(NSString * )stringFormat;
 @end
